@@ -1,0 +1,15 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+
+<h1>Autores</h1>
+
+<a class="btn btn-primary" href="{% url 'crear_autor' %}">Agregar Autor</a>
+
+<ul>
+{% for autor in autores %}
+    <li>{{ autor.nombre }} - {{ autor.correo }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
