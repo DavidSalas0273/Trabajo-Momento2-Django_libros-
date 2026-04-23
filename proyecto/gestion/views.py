@@ -1,6 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Autor, Libro
 from .forms import AutorForm, LibroForm
+
+# -------------------------
+# LOBBY (PANEL PRINCIPAL)
+# -------------------------
+
+@login_required
+def lobby(request):
+    return render(request, 'gestion/lobby.html')
+
 
 # -------------------------
 # CRUD AUTORES
@@ -41,6 +51,7 @@ def eliminar_autor(request, pk):
         return redirect('lista_autores')
     return render(request, 'gestion/autor_confirm_delete.html', {'autor': autor})
 
+
 # -------------------------
 # CRUD LIBROS
 # -------------------------
@@ -78,4 +89,4 @@ def eliminar_libro(request, pk):
     if request.method == 'POST':
         libro.delete()
         return redirect('lista_libros')
-    return render(request, 'gestion/libro_confirm_delete.html', {'libro': libro})   
+    return render(request, 'gestion/libro_confirm_delete.html', {'libro': libro})

@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     # -------------------------
     # LIBROS
@@ -18,3 +19,9 @@ urlpatterns = [
     path('autores/editar/<int:pk>/', views.editar_autor, name='editar_autor'),
     path('autores/eliminar/<int:pk>/', views.eliminar_autor, name='eliminar_autor'),
 ]
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def lobby(request):
+    return render(request, 'gestion/lobby.html')
